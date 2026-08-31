@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import {
-  faInstagram,
   faLinkedinIn,
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
@@ -13,7 +12,6 @@ const iconData = (icon) => ({
 
 const brandIcons = {
   x: iconData(faXTwitter),
-  instagram: iconData(faInstagram),
   linkedin: iconData(faLinkedinIn),
 };
 ---
@@ -85,9 +83,7 @@ const brandIcons = {
                 rel="noopener noreferrer"
                 aria-label="Instagram"
               >
-                <svg viewBox={brandIcons.instagram.viewBox} aria-hidden="true">
-                  <path d={brandIcons.instagram.path}></path>
-                </svg>
+                <img class="brand-image instagram-image" src="/instagram.svg" alt="" width="40" height="40" />
                 <span class="tooltip">@volokoby</span>
               </a>
               <a

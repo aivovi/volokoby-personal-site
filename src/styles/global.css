@@ -118,9 +118,17 @@ body {
 
 .social-link svg {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
   fill: currentColor;
+}
+
+.brand-image {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .x-link {
@@ -131,7 +139,7 @@ body {
 
 .instagram-link {
   z-index: 20;
-  background: linear-gradient(145deg, #4f5bd5 5%, #962fbf 42%, #d62976 67%, #fa7e1e 86%, #feda75 100%);
+  background: #ffffff;
   transform: none;
 }
 

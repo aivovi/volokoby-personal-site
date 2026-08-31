@@ -28,7 +28,7 @@ Both source/implementation pairs were emitted together for comparison at the sam
 - Fonts and typography: implementation uses Inter at 300 weight, 24 px size, and 32 px line-height, matching the reference's visible type scale and light weight. Natural wrapping is retained on mobile; no forced line breaks remain in the content copy.
 - Spacing and layout rhythm: implementation uses the reference's 32 px mobile page padding, 80 px desktop top offset, 576 px desktop content column, 16 px row rhythm, 40 px intro/social separation, and 40 px icon sizing. Desktop rows are inline; mobile rows stack and wrap without overflow.
 - Colors and visual tokens: white page, dark gray text, blue/purple interaction colors, subtle gray app border/shadow, and the reference-like X/Instagram/LinkedIn brand surfaces were checked in both viewports.
-- Image quality and asset fidelity: Volodymyr's existing portrait and Glimzy artwork were kept, cropped to 40 × 40 px, and masked consistently with the reference. Social vectors come from the local Font Awesome brand package rather than hand-drawn substitutes or remote image hotlinks.
+- Image quality and asset fidelity: Volodymyr's existing portrait and Glimzy artwork were kept, cropped to 40 × 40 px, and masked consistently with the reference. X and LinkedIn use local Font Awesome brand vectors; Instagram uses a local full-color SVG asset with its original gradient background rather than a CSS approximation or remote image hotlink.
 - Copy and content: existing Volodymyr, Glimzy, App Store, X, Instagram, and LinkedIn content/URLs were preserved; no reference-only content was introduced.
 
 ## Full-view and focused comparison evidence
@@ -50,6 +50,8 @@ Full-view comparison was sufficient because the page is a single low-density con
 3. Revised comparison: found mobile icons still inherited desktop transforms and had no 8 px mobile gap.
 4. Fix: scoped rotation/overlap to the 640 px desktop breakpoint and restored the 8 px mobile icon gap; hid mobile-only tooltips.
 5. Final comparison: no actionable P0/P1/P2 visual drift remained.
+6. Follow-up visual correction: enlarged the X and LinkedIn marks from 20 px to 26 px inside the same 40 × 40 containers and replaced the approximate Instagram CSS gradient with the full-color local Instagram SVG.
+7. Post-fix comparison at 1440 × 1000 and 390 × 844: all three social marks are optically larger, Instagram fills its rounded square with the original gradient, and responsive spacing/layout is unchanged.
 
 ## Implementation checklist
 
