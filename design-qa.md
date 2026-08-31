@@ -32,7 +32,7 @@ Both source/implementation pairs were emitted together for comparison at the sam
 - Spacing and layout rhythm: implementation uses the reference's 32 px mobile page padding, 80 px desktop top offset, 576 px desktop content column, 16 px row rhythm, 40 px intro/social separation, and 40 px icon sizing. Desktop rows are inline; mobile rows stack and wrap without overflow.
 - Colors and visual tokens: white page, dark gray text, blue/purple interaction colors, subtle gray app border/shadow, and the reference-like X/Instagram/LinkedIn brand surfaces were checked in both viewports.
 - Image quality and asset fidelity: Volodymyr's existing portrait and Glimzy artwork were kept, cropped to 40 × 40 px, and masked consistently with the reference. X and LinkedIn use local Font Awesome brand vectors; Instagram uses a local full-color SVG asset with its original gradient background rather than a CSS approximation or remote image hotlink.
-- Copy and content: existing Volodymyr, Glimzy, App Store, X, Instagram, and LinkedIn content/URLs were preserved; no reference-only content was introduced.
+- Copy and content: the visible intro now uses “Volo Kobyletsky,” and the apps row describes building Glimzy as a podcast player for learning English; the existing portrait, Glimzy, App Store, X, Instagram, and LinkedIn URLs remain in place.
 
 ## Full-view and focused comparison evidence
 
@@ -60,6 +60,7 @@ Focused hover-region comparison used the paired 1440 × 1000 captures at `/Users
 8. Hover comparison: the reference moves the entire social group from the overlapping rotated state to a straight row with 8 px gaps when any icon is hovered; the implementation initially normalized only the hovered icon.
 9. Fix: added desktop `.social-cluster:hover` and `.social-cluster:focus-within` transforms so all three implementation icons animate together into the same straight 8 px-spaced row.
 10. Post-fix hover comparison: paired reference/implementation captures show the group-wide straightening animation; mobile remains unrotated and overflow-free.
+11. Copy correction: updated the visible intro name to “Volo Kobyletsky” and replaced the apps-row copy with the Glimzy podcast-player description; responsive wrapping remains overflow-free at the annotated 697 × 694 viewport and on mobile.
 
 ## Implementation checklist
 
