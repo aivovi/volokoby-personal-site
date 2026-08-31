@@ -10,9 +10,11 @@ The reference contains additional Chris-specific content (YouTube, tech-stack li
 
 - Source visual truth, desktop: `https://chrisraroque.com/` captured at `/Users/admin/Documents/ChatGPT/Volokoby/volokoby-personal-site/qa-artifacts/reference-desktop.jpg`.
 - Source visual truth, mobile: `https://chrisraroque.com/` captured at `/Users/admin/Documents/ChatGPT/Volokoby/volokoby-personal-site/qa-artifacts/reference-mobile.jpg`.
+- Source hover state, desktop: `https://chrisraroque.com/` captured at `/Users/admin/Documents/ChatGPT/Volokoby/volokoby-personal-site/qa-artifacts/reference-social-hover-desktop.jpg`.
 - Rendered implementation: `http://127.0.0.1:4321/`.
 - Implementation, desktop: `/Users/admin/Documents/ChatGPT/Volokoby/volokoby-personal-site/qa-artifacts/implementation-desktop.jpg`.
 - Implementation, mobile: `/Users/admin/Documents/ChatGPT/Volokoby/volokoby-personal-site/qa-artifacts/implementation-mobile.jpg`.
+- Implementation hover state, desktop: `/Users/admin/Documents/ChatGPT/Volokoby/volokoby-personal-site/qa-artifacts/implementation-social-hover-desktop.jpg`.
 
 Both source/implementation pairs were emitted together for comparison at the same viewport and initial scroll position.
 
@@ -22,6 +24,7 @@ Both source/implementation pairs were emitted together for comparison at the sam
 - Mobile viewport: 390 × 844 CSS px; source and implementation screenshots are 390 × 844 pixels.
 - Browser: Chrome, light theme, initial page state, scroll position y=0.
 - Screenshot density: 1×; no downsampling or device-frame normalization was needed. The captured JPEG files report density 1×1.
+- Hover state: desktop pointer over the social icon group; mobile checked at rest with no hover transform.
 
 ## Required fidelity surfaces
 
@@ -35,12 +38,14 @@ Both source/implementation pairs were emitted together for comparison at the sam
 
 Full-view comparison was sufficient because the page is a single low-density content column and the critical fidelity surfaces (text, portrait, app icon, and social icons) are all clearly readable in the 1440 × 1000 and 390 × 844 captures. The mobile captures provide a focused check of wrapping, icon spacing, and 40 × 40 tap targets; no separate crop was needed.
 
+Focused hover-region comparison used the paired 1440 × 1000 captures at `/Users/admin/Documents/ChatGPT/Volokoby/volokoby-personal-site/qa-artifacts/reference-social-hover-desktop.jpg` and `/Users/admin/Documents/ChatGPT/Volokoby/volokoby-personal-site/qa-artifacts/implementation-social-hover-desktop.jpg` to verify that the entire social group straightens and opens to 8 px spacing on pointer hover.
+
 ## Responsive and interaction checks
 
 - Tablet smoke check at 768 × 900: no horizontal overflow; content remains centered at 576 px.
 - Small mobile smoke check at 320 × 740: no horizontal overflow; text and icon rows remain readable and usable.
 - Four rendered links were checked for the expected destinations, accessible labels, `_blank` targets, and `noopener noreferrer` protection.
-- Social/app hover and focus styles are implemented; mobile tooltips are hidden to preserve the reference's compact mobile presentation.
+- Social group hover/focus-within behavior was tested in Chrome: all marks straighten together and animate into an 8 px-spaced row, matching the reference; mobile keeps the straight 8 px-spaced row and hides tooltips.
 - No local implementation console errors or warnings were observed in the Chrome runtime log for `127.0.0.1`; `npm run build` completed successfully.
 
 ## Comparison history
@@ -52,6 +57,9 @@ Full-view comparison was sufficient because the page is a single low-density con
 5. Final comparison: no actionable P0/P1/P2 visual drift remained.
 6. Follow-up visual correction: enlarged the X and LinkedIn marks from 20 px to 26 px inside the same 40 × 40 containers and replaced the approximate Instagram CSS gradient with the full-color local Instagram SVG.
 7. Post-fix comparison at 1440 × 1000 and 390 × 844: all three social marks are optically larger, Instagram fills its rounded square with the original gradient, and responsive spacing/layout is unchanged.
+8. Hover comparison: the reference moves the entire social group from the overlapping rotated state to a straight row with 8 px gaps when any icon is hovered; the implementation initially normalized only the hovered icon.
+9. Fix: added desktop `.social-cluster:hover` and `.social-cluster:focus-within` transforms so all three implementation icons animate together into the same straight 8 px-spaced row.
+10. Post-fix hover comparison: paired reference/implementation captures show the group-wide straightening animation; mobile remains unrotated and overflow-free.
 
 ## Implementation checklist
 

@@ -174,13 +174,7 @@ body {
 }
 
 .app-link:hover,
-.app-link:focus-visible,
-.x-link:hover,
-.x-link:focus-visible,
-.instagram-link:hover,
-.instagram-link:focus-visible,
-.linkedin-link:hover,
-.linkedin-link:focus-visible {
+.app-link:focus-visible {
   opacity: 0.88;
   transform: translateY(0) rotate(0deg);
 }
@@ -230,6 +224,21 @@ body {
 
   .linkedin-link {
     transform: translateX(-8px) rotate(6deg);
+  }
+
+  .social-cluster:hover .x-link,
+  .social-cluster:focus-within .x-link {
+    transform: none;
+  }
+
+  .social-cluster:hover .instagram-link,
+  .social-cluster:focus-within .instagram-link {
+    transform: translateX(8px) rotate(0deg);
+  }
+
+  .social-cluster:hover .linkedin-link,
+  .social-cluster:focus-within .linkedin-link {
+    transform: translateX(16px) rotate(0deg);
   }
 }
 
