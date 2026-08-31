@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^7.3.1",
     "astro": "^5.13.4"
   },
   "displayName": "Volodymyr Kobyletsky"

@@ -1,6 +1,8 @@
 :root {
   color-scheme: light;
-  --text: #242a33;
+  --text: #1f2937;
+  --link: #2563eb;
+  --link-hover: #9333ea;
 }
 
 * {
@@ -16,157 +18,216 @@ body {
 
 body {
   color: var(--text);
-  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 24px;
   font-weight: 300;
+  line-height: 32px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-main {
-  width: min(100% - 64px, 650px);
-  margin: 0 auto;
-  padding: 80px 0 100px;
+.page-shell {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0;
+  padding: 40px 32px 32px;
 }
 
-section {
-  margin: 0 0 108px;
+.content-column {
+  width: 100%;
+  max-width: 576px;
 }
 
-section:last-child {
-  margin-bottom: 0;
+.content-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
 }
 
-h1,
-h2 {
-  margin: 0;
-  font-weight: 300;
-  letter-spacing: -0.04em;
-  font-size: clamp(2.15rem, 7vw, 3.05rem);
-  line-height: 1.28;
+.content-line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.intro-line {
+  margin-bottom: 40px;
+}
+
+.social-line {
+  margin-top: 40px;
 }
 
 .portrait {
   display: block;
-  width: 78px;
-  height: 78px;
-  margin-top: 24px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   object-position: 52% 24%;
 }
 
-.icon-row {
+.icon-cluster {
   display: flex;
   align-items: center;
-  gap: 13px;
-  margin-top: 20px;
+  gap: 8px;
 }
 
-.product-row {
-  margin-top: 19px;
+.app-cluster,
+.social-cluster {
+  gap: 8px;
 }
 
-.app-icon,
-.social-icon {
-  display: grid;
+.icon-link {
+  position: relative;
+  display: inline-flex;
   flex: 0 0 auto;
-  width: 76px;
-  height: 76px;
-  place-items: center;
-  overflow: hidden;
-  border-radius: 19px;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  overflow: visible;
+  border-radius: 12px;
   text-decoration: none;
-  transition: transform 160ms ease, opacity 160ms ease;
+  transition: transform 200ms ease, opacity 200ms ease;
 }
 
-.app-icon img {
+.app-link {
+  overflow: visible;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+  transform: none;
+}
+
+.app-link img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   object-fit: cover;
 }
 
-.social-icon:hover,
-.app-icon:hover {
-  transform: translateY(-2px);
-  opacity: 0.88;
-}
-
-.social-icon svg {
-  width: 39px;
-  height: 39px;
-}
-
-.x-icon {
+.social-link {
   color: #ffffff;
+}
+
+.social-link svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.x-link {
+  z-index: 10;
   background: #000000;
+  transform: none;
 }
 
-.x-icon svg {
-  width: 35px;
-  height: 35px;
-  fill: currentColor;
+.instagram-link {
+  z-index: 20;
+  background: linear-gradient(145deg, #4f5bd5 5%, #962fbf 42%, #d62976 67%, #fa7e1e 86%, #feda75 100%);
+  transform: none;
 }
 
-.instagram-icon {
-  color: #ffffff;
-  background: radial-gradient(circle at 30% 105%, #ffd36a 0 21%, #f03683 47%, #7838d6 78%, #4430a7 100%);
-}
-
-.instagram-icon svg {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.9;
-}
-
-.instagram-icon .dot {
-  fill: currentColor;
-  stroke: none;
-}
-
-.linkedin-icon {
-  color: #ffffff;
+.linkedin-link {
+  z-index: 30;
   background: #0a66c2;
+  transform: none;
 }
 
-.linkedin-icon svg {
-  width: 43px;
-  height: 43px;
-  fill: currentColor;
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 50;
+  padding: 4px 10px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  white-space: nowrap;
+  background: rgb(0 0 0 / 80%);
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 200ms ease;
 }
 
-@media (max-width: 520px) {
-  main {
-    width: calc(100% - 64px);
-    padding-top: 66px;
-    padding-bottom: 80px;
+.icon-link:hover .tooltip,
+.icon-link:focus-visible .tooltip {
+  opacity: 1;
+}
+
+.app-link:hover,
+.app-link:focus-visible,
+.x-link:hover,
+.x-link:focus-visible,
+.instagram-link:hover,
+.instagram-link:focus-visible,
+.linkedin-link:hover,
+.linkedin-link:focus-visible {
+  opacity: 0.88;
+  transform: translateY(0) rotate(0deg);
+}
+
+.app-link:hover,
+.app-link:focus-visible {
+  transform: translateX(0) rotate(0deg);
+}
+
+.linkedin-link:hover,
+.linkedin-link:focus-visible {
+  transform: translateX(0) rotate(0deg);
+}
+
+@media (max-width: 639px) {
+  .tooltip {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .page-shell {
+    margin-top: 80px;
   }
 
-  section {
-    margin-bottom: 98px;
+  .content-line {
+    flex-direction: row;
+    align-items: center;
   }
 
-  h1,
-  h2 {
-    font-size: clamp(2rem, 9.4vw, 2.55rem);
+  .app-cluster,
+  .social-cluster {
+    gap: 0;
   }
 
-  .portrait {
-    width: 74px;
-    height: 74px;
+  .app-link {
+    transform: translateX(8px) rotate(-6deg);
   }
 
-  .app-icon,
-  .social-icon {
-    width: 72px;
-    height: 72px;
-    border-radius: 18px;
+  .x-link {
+    transform: translateX(8px) rotate(-6deg);
+  }
+
+  .instagram-link {
+    transform: rotate(3deg);
+  }
+
+  .linkedin-link {
+    transform: translateX(-8px) rotate(6deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .app-icon,
-  .social-icon {
+  .icon-link,
+  .tooltip {
     transition: none;
   }
 }
