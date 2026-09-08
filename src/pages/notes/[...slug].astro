@@ -1,0 +1,77 @@
+---
+import "../../styles/global.css";
+import { getCollection, render } from "astro:content";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
+const iconData = (icon) => ({
+  viewBox: `0 0 ${icon.icon[0]} ${icon.icon[1]}`,
+  path: Array.isArray(icon.icon[4]) ? icon.icon[4].join(" ") : icon.icon[4],
+});
+
+const arrowLeft = iconData(faArrowLeft);
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+
+  return notes.map((note) => ({
+    params: { slug: note.id },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+}).format(note.data.date);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={note.data.description || note.data.title} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/volo.png" />
+    <link rel="apple-touch-icon" href="/volo.png" />
+    <title>{note.data.title} — Volo Kobyletsky</title>
+  </head>
+  <body>
+    <main class="article-shell">
+      <article class="article-column">
+        <a class="article-back-link" href="/" aria-label="Back to home">
+          <svg class="article-arrow" viewBox={arrowLeft.viewBox} aria-hidden="true">
+            <path d={arrowLeft.path}></path>
+          </svg>
+          <span>Home</span>
+        </a>
+
+        <header class="article-header">
+          <p class="article-kicker">Notes</p>
+          <h1 class="article-title">{note.data.title}</h1>
+          <p class="article-meta">{formattedDate} · {note.data.readTime}</p>
+        </header>
+
+        <div class="article-content">
+          <Content />
+        </div>
+
+        <footer class="article-footer">
+          <a class="article-footer-link" href="/" aria-label="Back to home">
+            <svg class="article-arrow" viewBox={arrowLeft.viewBox} aria-hidden="true">
+              <path d={arrowLeft.path}></path>
+            </svg>
+            <span>Home</span>
+          </a>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>

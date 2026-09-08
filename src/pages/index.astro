@@ -1,9 +1,11 @@
 ---
 import "../styles/global.css";
+import { getCollection } from "astro:content";
 import {
   faLinkedinIn,
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const iconData = (icon) => ({
   viewBox: `0 0 ${icon.icon[0]} ${icon.icon[1]}`,
@@ -14,6 +16,14 @@ const brandIcons = {
   x: iconData(faXTwitter),
   linkedin: iconData(faLinkedinIn),
 };
+
+const uiIcons = {
+  arrowRight: iconData(faArrowRight),
+};
+
+const notes = (await getCollection("notes")).sort(
+  (firstNote, secondNote) => secondNote.data.date.valueOf() - firstNote.data.date.valueOf(),
+);
 ---
 
 <!doctype html>
@@ -21,14 +31,14 @@ const brandIcons = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Volodymyr Kobyletsky builds mobile apps, including Glimzy." />
+    <meta name="description" content="Volo Kobyletsky builds mobile apps, including Glimzy." />
     <meta name="theme-color" content="#ffffff" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/jpeg" href="/volodymyr.jpg" />
-    <link rel="apple-touch-icon" href="/volodymyr.jpg" />
-    <title>Volodymyr Kobyletsky</title>
+    <link rel="icon" type="image/png" href="/volo.png" />
+    <link rel="apple-touch-icon" href="/volo.png" />
+    <title>Volo Kobyletsky</title>
   </head>
   <body>
     <main class="page-shell">
@@ -36,21 +46,25 @@ const brandIcons = {
         <div class="content-copy">
           <div class="content-line intro-line">
             <span>Hi, my name is Volo Kobyletsky</span>
-            <img
-              class="portrait"
-              src="/volodymyr.jpg"
-              alt="Volodymyr Kobyletsky"
-              width="40"
-              height="40"
-            />
+            <span class="portrait-wrap" tabindex="0" aria-describedby="portrait-tooltip">
+              <img
+                class="portrait"
+                src="/volo.png"
+                alt="Volo Kobyletsky"
+                width="40"
+                height="40"
+              />
+              <span class="tooltip" id="portrait-tooltip">The best photo of me I could find =)</span>
+            </span>
           </div>
 
           <div class="content-line apps-line">
-            <span>I'm building Glimzy - a podcast player app for learning English</span>
+            <span>I'm building Glimzy, a podcast player for learning English</span>
             <span class="icon-cluster app-cluster" aria-label="Mobile apps">
               <a
                 class="icon-link app-link"
                 href="https://apps.apple.com/app/inputflow-english-podcasts/id6772201351"
+                data-analytics-destination="Glimzy"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Open Glimzy on the App Store"
@@ -62,11 +76,12 @@ const brandIcons = {
           </div>
 
           <div class="content-line social-line">
-            <span>I also post regularly on these platforms</span>
+            <span>I also post on social media</span>
             <nav class="icon-cluster social-cluster" aria-label="Social media">
               <a
                 class="icon-link social-link x-link"
                 href="https://x.com/volokoby"
+                data-analytics-destination="X"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X"
@@ -74,21 +89,23 @@ const brandIcons = {
                 <svg viewBox={brandIcons.x.viewBox} aria-hidden="true">
                   <path d={brandIcons.x.path}></path>
                 </svg>
-                <span class="tooltip">@volokoby</span>
+                <span class="tooltip">X</span>
               </a>
               <a
                 class="icon-link social-link instagram-link"
                 href="https://www.instagram.com/volokoby"
+                data-analytics-destination="Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
               >
                 <img class="brand-image instagram-image" src="/instagram.svg" alt="" width="40" height="40" />
-                <span class="tooltip">@volokoby</span>
+                <span class="tooltip">Instagram</span>
               </a>
               <a
                 class="icon-link social-link linkedin-link"
                 href="https://www.linkedin.com/in/volodymyr-kobyletsky-088493281/"
+                data-analytics-destination="LinkedIn"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -100,8 +117,71 @@ const brandIcons = {
               </a>
             </nav>
           </div>
+
+          <div class="content-line contact-line">
+            <span>You can reach me here</span>
+            <nav class="icon-cluster contact-cluster" aria-label="Contact Volo Kobyletsky">
+              <a
+                class="icon-link contact-link telegram-link"
+                href="https://t.me/volokoby"
+                data-analytics-destination="Telegram"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Message Volo Kobyletsky on Telegram"
+              >
+                <img class="contact-brand-image telegram-image" src="/telegram.svg" alt="" width="24" height="24" />
+                <span class="tooltip">Telegram</span>
+              </a>
+              <a
+                class="icon-link contact-link gmail-link"
+                href="mailto:volokoby@gmail.com"
+                data-analytics-destination="Gmail"
+                aria-label="Email Volo Kobyletsky at volokoby@gmail.com"
+              >
+                <img class="contact-brand-image gmail-image" src="/gmail.svg" alt="" width="30" height="30" />
+                <span class="tooltip">Gmail</span>
+              </a>
+            </nav>
+          </div>
+
+          <section class="content-line notes-line" aria-labelledby="notes-title">
+            <span class="notes-label" id="notes-title">Notes</span>
+            <div class="notes-list">
+              {notes.map((note) => (
+                <a class="note-link" href={`/notes/${note.id}/`}>
+                  <span class="note-title">{note.data.title}</span>
+                  <svg
+                    class="note-arrow"
+                    viewBox={uiIcons.arrowRight.viewBox}
+                    aria-hidden="true"
+                  >
+                    <path d={uiIcons.arrowRight.path}></path>
+                  </svg>
+                  <span class="note-meta">{note.data.label} · {note.data.readTime}</span>
+                </a>
+              ))}
+            </div>
+          </section>
         </div>
       </div>
     </main>
+
+    <script>
+      type ZarazApi = {
+        track: (eventName: string, properties?: Record<string, string>) => Promise<void>;
+      };
+
+      const analyticsWindow = window as Window & { zaraz?: ZarazApi };
+
+      document.querySelectorAll<HTMLElement>("[data-analytics-destination]").forEach((link) => {
+        link.addEventListener("click", () => {
+          const destination = link.dataset.analyticsDestination;
+
+          if (destination && analyticsWindow.zaraz?.track) {
+            void analyticsWindow.zaraz.track("outbound_link_click", { destination });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

@@ -1,8 +1,8 @@
 :root {
   color-scheme: light;
   --text: #1f2937;
-  --link: #2563eb;
-  --link-hover: #9333ea;
+  --link: #1f2937;
+  --link-hover: #1f2937;
 }
 
 * {
@@ -63,13 +63,216 @@ body {
   margin-top: 40px;
 }
 
+.contact-line {
+  margin-top: 40px;
+}
+
+.notes-line {
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.content-line.notes-line {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.notes-label {
+  color: #6b7280;
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.note-link {
+  display: block;
+  width: 100%;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.note-link:focus-visible,
+.article-back-link:focus-visible,
+.article-footer-link:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.note-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.note-link:hover .note-title,
+.note-link:focus-visible .note-title {
+  text-decoration-thickness: 2px;
+}
+
+.note-arrow {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  vertical-align: -1px;
+  fill: currentColor;
+  transition: transform 200ms ease;
+}
+
+.note-link:hover .note-arrow,
+.note-link:focus-visible .note-arrow {
+  transform: translateX(3px);
+}
+
+.note-meta {
+  display: block;
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.article-shell {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 56px 32px 96px;
+}
+
+.article-column {
+  width: 100%;
+  max-width: 620px;
+}
+
+.article-back-link,
+.article-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: 20px;
+  line-height: 28px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.article-back-link:hover,
+.article-back-link:focus-visible,
+.article-footer-link:hover,
+.article-footer-link:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+.article-arrow {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.article-header {
+  margin-top: 52px;
+}
+
+.article-kicker,
+.article-meta {
+  margin: 0;
+  color: #6b7280;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.article-title {
+  max-width: 620px;
+  margin: 12px 0 0;
+  color: var(--text);
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 44px;
+}
+
+.article-meta {
+  margin-top: 16px;
+}
+
+.article-content {
+  margin-top: 52px;
+  color: var(--text);
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.article-content p {
+  margin: 0;
+}
+
+.article-content p + p {
+  margin-top: 28px;
+}
+
+.article-footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.portrait-wrap {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.portrait-wrap:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 3px;
+}
+
 .portrait {
   display: block;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: 52% 24%;
+  object-position: center;
+  transform-origin: 50% 85%;
+}
+
+@keyframes portrait-wiggle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+  20% {
+    transform: translateY(-2px) rotate(-8deg) scale(1.04);
+  }
+
+  40% {
+    transform: translateY(0) rotate(8deg) scale(1.04);
+  }
+
+  60% {
+    transform: translateY(-1px) rotate(-5deg) scale(1.02);
+  }
+
+  80% {
+    transform: translateY(0) rotate(4deg) scale(1.01);
+  }
+}
+
+.portrait-wrap:hover .portrait,
+.portrait-wrap:focus-visible .portrait {
+  animation: portrait-wiggle 650ms ease-in-out;
 }
 
 .icon-cluster {
@@ -79,7 +282,8 @@ body {
 }
 
 .app-cluster,
-.social-cluster {
+.social-cluster,
+.contact-cluster {
   gap: 8px;
 }
 
@@ -123,6 +327,22 @@ body {
   fill: currentColor;
 }
 
+.contact-link {
+  color: #ffffff;
+}
+
+.contact-brand-image {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.telegram-image {
+  width: 24px;
+  height: 24px;
+}
+
 .brand-image {
   display: block;
   width: 40px;
@@ -149,6 +369,20 @@ body {
   transform: none;
 }
 
+.telegram-link {
+  z-index: 20;
+  background: #229ed9;
+  transform: none;
+}
+
+.gmail-link {
+  z-index: 30;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+  transform: none;
+}
+
 .tooltip {
   position: absolute;
   bottom: calc(100% + 8px);
@@ -169,7 +403,9 @@ body {
 }
 
 .icon-link:hover .tooltip,
-.icon-link:focus-visible .tooltip {
+.icon-link:focus-visible .tooltip,
+.portrait-wrap:hover .tooltip,
+.portrait-wrap:focus-visible .tooltip {
   opacity: 1;
 }
 
@@ -193,6 +429,30 @@ body {
   .tooltip {
     display: none;
   }
+
+  .article-shell {
+    padding-top: 40px;
+    padding-bottom: 72px;
+  }
+
+  .article-header {
+    margin-top: 40px;
+  }
+
+  .article-title {
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  .article-content {
+    margin-top: 40px;
+    font-size: 19px;
+    line-height: 30px;
+  }
+
+  .article-footer {
+    margin-top: 48px;
+  }
 }
 
 @media (min-width: 640px) {
@@ -206,12 +466,17 @@ body {
   }
 
   .app-cluster,
-  .social-cluster {
+  .social-cluster,
+  .contact-cluster {
     gap: 0;
   }
 
+  .app-cluster {
+    transform: translateX(-56px);
+  }
+
   .app-link {
-    transform: translateX(8px) rotate(-6deg);
+    transform: rotate(-6deg);
   }
 
   .x-link {
@@ -224,6 +489,14 @@ body {
 
   .linkedin-link {
     transform: translateX(-8px) rotate(6deg);
+  }
+
+  .telegram-link {
+    transform: translateX(4px) rotate(-5deg);
+  }
+
+  .gmail-link {
+    transform: translateX(-4px) rotate(5deg);
   }
 
   .social-cluster:hover .x-link,
@@ -240,11 +513,27 @@ body {
   .social-cluster:focus-within .linkedin-link {
     transform: translateX(16px) rotate(0deg);
   }
+
+  .contact-cluster:hover .telegram-link,
+  .contact-cluster:focus-within .telegram-link {
+    transform: none;
+  }
+
+  .contact-cluster:hover .gmail-link,
+  .contact-cluster:focus-within .gmail-link {
+    transform: translateX(8px) rotate(0deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .icon-link,
-  .tooltip {
+  .tooltip,
+  .note-arrow {
     transition: none;
+  }
+
+  .portrait-wrap:hover .portrait,
+  .portrait-wrap:focus-visible .portrait {
+    animation: none;
   }
 }
