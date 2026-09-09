@@ -28,10 +28,12 @@ body {
 
 .page-shell {
   display: flex;
+  align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 0;
-  padding: 40px 32px 32px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 32px;
 }
 
 .content-column {
@@ -413,10 +415,6 @@ body {
 }
 
 @media (min-width: 640px) {
-  .page-shell {
-    margin-top: 80px;
-  }
-
   .content-line {
     flex-direction: row;
     align-items: center;
