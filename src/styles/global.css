@@ -63,10 +63,6 @@ body {
   margin-top: 40px;
 }
 
-.contact-line {
-  margin-top: 40px;
-}
-
 .notes-line {
   gap: 16px;
   margin-top: 40px;
@@ -274,8 +270,7 @@ body {
 }
 
 .app-cluster,
-.social-cluster,
-.contact-cluster {
+.social-cluster {
   gap: 8px;
 }
 
@@ -319,22 +314,6 @@ body {
   fill: currentColor;
 }
 
-.contact-link {
-  color: #ffffff;
-}
-
-.contact-brand-image {
-  display: block;
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-}
-
-.telegram-image {
-  width: 24px;
-  height: 24px;
-}
-
 .brand-image {
   display: block;
   width: 40px;
@@ -358,20 +337,6 @@ body {
 .linkedin-link {
   z-index: 30;
   background: #0a66c2;
-  transform: none;
-}
-
-.telegram-link {
-  z-index: 20;
-  background: #229ed9;
-  transform: none;
-}
-
-.gmail-link {
-  z-index: 30;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
   transform: none;
 }
 
@@ -458,8 +423,7 @@ body {
   }
 
   .app-cluster,
-  .social-cluster,
-  .contact-cluster {
+  .social-cluster {
     gap: 0;
   }
 
@@ -483,14 +447,6 @@ body {
     transform: translateX(-8px) rotate(6deg);
   }
 
-  .telegram-link {
-    transform: translateX(4px) rotate(-5deg);
-  }
-
-  .gmail-link {
-    transform: translateX(-4px) rotate(5deg);
-  }
-
   .social-cluster:hover .x-link,
   .social-cluster:focus-within .x-link {
     transform: none;
@@ -506,15 +462,6 @@ body {
     transform: translateX(16px) rotate(0deg);
   }
 
-  .contact-cluster:hover .telegram-link,
-  .contact-cluster:focus-within .telegram-link {
-    transform: none;
-  }
-
-  .contact-cluster:hover .gmail-link,
-  .contact-cluster:focus-within .gmail-link {
-    transform: translateX(8px) rotate(0deg);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
