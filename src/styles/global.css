@@ -68,7 +68,7 @@ body {
 }
 
 .notes-line {
-  gap: 8px;
+  gap: 16px;
   margin-top: 40px;
 }
 
@@ -84,7 +84,7 @@ body {
 .notes-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   width: 100%;
 }
 
@@ -127,14 +127,6 @@ body {
 .note-link:hover .note-arrow,
 .note-link:focus-visible .note-arrow {
   transform: translateX(3px);
-}
-
-.note-meta {
-  display: block;
-  margin-top: 4px;
-  color: #6b7280;
-  font-size: 16px;
-  line-height: 24px;
 }
 
 .article-shell {
