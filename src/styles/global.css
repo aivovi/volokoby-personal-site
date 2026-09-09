@@ -94,8 +94,7 @@ body {
 }
 
 .note-link:focus-visible,
-.article-back-link:focus-visible,
-.article-footer-link:focus-visible {
+.article-back-link:focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 4px;
   border-radius: 4px;
@@ -139,8 +138,7 @@ body {
   max-width: 620px;
 }
 
-.article-back-link,
-.article-footer-link {
+.article-back-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -153,9 +151,7 @@ body {
 }
 
 .article-back-link:hover,
-.article-back-link:focus-visible,
-.article-footer-link:hover,
-.article-footer-link:focus-visible {
+.article-back-link:focus-visible {
   text-decoration-thickness: 2px;
 }
 
@@ -205,12 +201,6 @@ body {
 
 .article-content p + p {
   margin-top: 28px;
-}
-
-.article-footer {
-  margin-top: 56px;
-  padding-top: 20px;
-  border-top: 1px solid #e5e7eb;
 }
 
 .portrait-wrap {
@@ -409,9 +399,6 @@ body {
     line-height: 30px;
   }
 
-  .article-footer {
-    margin-top: 48px;
-  }
 }
 
 @media (min-width: 640px) {
